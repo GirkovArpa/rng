@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>RNG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="skeleton.css">
+    <style>
+      table {
+        table-layout: fixed;
+      }
+
+      th, td {
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="five columns">&nbsp;</div>
+      <div class="two columns">
+        <h1>RNG</h1>
+      </div>
+      <div class="five columns">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+              <th>8</th>
+              <th>9</th>
+              <th>10</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="three columns">&nbsp;</div>
+      <div class="two columns">
+        <button class="button-primary u-full-width" id="go">Go</button>
+      </div>
+      <div class="two columns">
+        <button class="button-primary u-full-width" id="stop">Stop</button>
+      </div>
+      <div class="two columns">
+        <button class="button-primary u-full-width" id="reset">Reset</button>
+      </div>
+      <div class="three columns">&nbsp;</div>
+    </div>
+    </div>
+    </div>
+    <script>
+      'use strict';
+      let on = false;
+      const cells = document.querySelectorAll('td');
+      document.querySelector('#go').addEventListener('click', async () => {
+        on = true;
+        let iteration = 0;
+        while (on) {
+          const random_number = ~~(Math.random() * 10);
+          cells[random_number].textContent++;
+          iteration++;
+          if (iteration % 10 == 0) {
+            await new Promise(setTimeout);
+          }
+        }
+      });
+      document.querySelector('#stop').addEventListener('click', () => {
+        on = false;
+      });
+      document.querySelector('#reset').addEventListener('click', () => {
+        cells.forEach((cell) => cell.textContent = 0);
+      });
+    </script>
+  </body>
+
+</html>
